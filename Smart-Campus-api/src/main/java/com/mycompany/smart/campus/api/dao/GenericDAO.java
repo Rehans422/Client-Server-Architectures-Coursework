@@ -44,18 +44,18 @@ public class GenericDAO<T extends BaseModel> {
         item.setId(String.valueOf(maxId + 1));
         items.add(item);
     }
-    
+
     public void update(T updatedItem) {
         for (int i = 0; i < items.size(); i++) {
             T item = items.get(i);
-            
+
             if (item.getId().equals(updatedItem.getId())) {
                 items.set(i, updatedItem);
                 return;
             }
         }
     }
-    
+
     public void delete(String id) {
         items.removeIf(item -> item.getId().equals(id));
     }

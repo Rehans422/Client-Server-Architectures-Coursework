@@ -9,8 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import com.mycompany.smart.campus.api.dao.MockDatabase;
-import com.mycompany.smart.campus.api.dao.GenericDAO;
+import com.mycompany.smart.campus.api.dao.*;
 import com.mycompany.smart.campus.api.models.RoomModel;
 import java.net.URI;
 import javax.ws.rs.core.Response;
@@ -22,19 +21,19 @@ import javax.ws.rs.core.Response;
 @Path("/rooms")
 public class RoomResource {
 
-    private GenericDAO<RoomModel> sensorDAO = new GenericDAO<>(MockDatabase.ROOMS);
+    private GenericDAO<RoomModel> roomDAO = new GenericDAO<>(MockDatabase.ROOMS);
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<RoomModel> roomList() {
-        return sensorDAO.getAll();
+        return roomDAO.getAll();
     }
 
     @GET
     @Path("/{roomId}")
     @Produces(MediaType.APPLICATION_JSON)
     public RoomModel getRoomById(@PathParam("roomId") int roomId) {
-        return sensorDAO.getById(roomId);
+        return roomDAO.getById(roomId);
     }
 
     @Context
@@ -44,7 +43,7 @@ public class RoomResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addRoom(RoomModel room) {
-        sensorDAO.add(room);
+        roomDAO.add(room);
 
         URI newRoomUri = uriInfo.getAbsolutePathBuilder()
                 .path(room.getId())
@@ -56,7 +55,7 @@ public class RoomResource {
     @DELETE
     @Path("/{roomId}")
     public String deleteRoom(@PathParam("roomId") String id) {
-        sensorDAO.delete(id);
+        roomDAO.delete(id);
 
         return "Room with id = " + id + " has been deleted.";
     }
