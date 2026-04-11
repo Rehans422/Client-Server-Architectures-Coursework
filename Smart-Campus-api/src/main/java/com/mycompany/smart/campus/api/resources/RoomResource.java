@@ -32,17 +32,21 @@ public class RoomResource {
     @GET
     @Path("/{roomId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public RoomModel getRoomById(@PathParam("roomId") int roomId) {
+    public RoomModel getRoomById(@PathParam("roomId") String roomId) {
+        RoomModel room = roomDAO.getById(roomId);
+        
+        if (room == null) {
+            throw new NotFoundException("Room not found.");
+        }
+        
         return roomDAO.getById(roomId);
     }
-
-    @Context
-    private UriInfo uriInfo;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addRoom(RoomModel room) {
+    public Response addRoom(@Context UriInfo uriInfo,
+            RoomModel room) {
         roomDAO.add(room);
 
         URI newRoomUri = uriInfo.getAbsolutePathBuilder()

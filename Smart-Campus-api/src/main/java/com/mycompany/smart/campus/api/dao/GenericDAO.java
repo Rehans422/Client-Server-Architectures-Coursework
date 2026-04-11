@@ -23,10 +23,9 @@ public class GenericDAO<T extends BaseModel> {
         return items;
     }
 
-    public T getById(int id) {
-        String idToGet = String.valueOf(id);
+    public T getById(String id) {
         for (T item : items) {
-            if (item.getId().equals(idToGet)) {
+            if (item.getId().equals(id)) {
                 return item;
             }
         }
