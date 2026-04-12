@@ -34,11 +34,11 @@ public class RoomResource {
     @Produces(MediaType.APPLICATION_JSON)
     public RoomModel getRoomById(@PathParam("roomId") String roomId) {
         RoomModel room = roomDAO.getById(roomId);
-        
+
         if (room == null) {
             throw new NotFoundException("Room not found.");
         }
-        
+
         return roomDAO.getById(roomId);
     }
 

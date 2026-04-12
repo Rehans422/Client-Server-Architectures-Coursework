@@ -11,12 +11,14 @@ package com.mycompany.smart.campus.api.models;
 public class SensorReadingModel implements BaseModel {
 
     private String id;
+    private String sensorId;
     private long timestamp;
     private double value;
 
     // Contructor
-    public SensorReadingModel(String id, long timestamp, double value) {
+    public SensorReadingModel(String id, String sensorId, long timestamp, double value) {
         this.id = id;
+        this.sensorId = sensorId;
         this.timestamp = timestamp;
         this.value = value;
     }
@@ -25,6 +27,10 @@ public class SensorReadingModel implements BaseModel {
     @Override
     public String getId() {
         return id;
+    }
+
+    public String getSensorId() {
+        return sensorId;
     }
 
     public long getTimestamp() {
@@ -39,6 +45,10 @@ public class SensorReadingModel implements BaseModel {
     @Override
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
     }
 
     public void setTimestamp(long timestamp) {

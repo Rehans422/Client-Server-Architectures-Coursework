@@ -5,6 +5,8 @@ com\mycompany\smart\campus\api\models\SensorModel.class
 com\mycompany\smart\campus\api\dao\MockDatabase.class
 com\mycompany\smart\campus\api\resources\DiscoveryResource.class
 com\mycompany\smart\campus\api\dao\GenericDAO.class
-com\mycompany\smart\campus\api\models\SensorReadingModel.class
+com\mycompany\smart\campus\api\resources\SensorReadingResource.class
 com\mycompany\smart\campus\api\SmartCampusPath.class
 com\mycompany\smart\campus\api\resources\JavaEE8Resource.class
+com\mycompany\smart\campus\api\resources\SensorResource.class
+com\mycompany\smart\campus\api\models\SensorReadingModel.class

@@ -4,9 +4,7 @@
  */
 package com.mycompany.smart.campus.api;
 
-import com.mycompany.smart.campus.api.resources.DiscoveryResource;
-import com.mycompany.smart.campus.api.resources.RoomResource;
-import com.mycompany.smart.campus.api.resources.SensorsResource;
+import com.mycompany.smart.campus.api.resources.*;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -24,7 +22,7 @@ public class SmartCampusPath extends Application {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(DiscoveryResource.class);
         classes.add(RoomResource.class);
-        classes.add(SensorsResource.class);
+        classes.add(SensorResource.class);
         return classes;
     }
 }

@@ -28,7 +28,7 @@ public class MockDatabase {
         SENSORS.add(new SensorModel("2", "CO2", "2"));
 
         // Initialising Sensor Readings
-        READINGS.add(new SensorReadingModel("1", 3000, 8));
-        READINGS.add(new SensorReadingModel("2", 54000, 22));
+        READINGS.add(new SensorReadingModel("1", "1", 3000, 8));
+        READINGS.add(new SensorReadingModel("2", "2" , 54000, 22));
     }
 }
