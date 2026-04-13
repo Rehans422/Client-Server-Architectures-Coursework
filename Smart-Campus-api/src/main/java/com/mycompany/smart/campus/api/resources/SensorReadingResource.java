@@ -4,16 +4,17 @@
  */
 package com.mycompany.smart.campus.api.resources;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import com.mycompany.smart.campus.api.dao.*;
 import com.mycompany.smart.campus.api.models.SensorReadingModel;
+import com.mycompany.smart.campus.api.models.SensorModel;
 import java.util.List;
 import java.util.ArrayList;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.ws.rs.Produces;
 public class SensorReadingResource {
 
     private GenericDAO<SensorReadingModel> readingDAO = new GenericDAO<>(MockDatabase.READINGS);
+    private GenericDAO<SensorModel> sensorDAO = new GenericDAO<>(MockDatabase.SENSORS);
     private String sensorId;
 
     public SensorReadingResource(String sensorId) {
@@ -34,7 +36,6 @@ public class SensorReadingResource {
         List<SensorReadingModel> response = new ArrayList<>();
 
         for (SensorReadingModel reading : readingDAO.getAll()) {
-            System.out.println(reading);
             if (sensorId.equals(reading.getSensorId())) {
                 response.add(reading);
             }
@@ -44,7 +45,7 @@ public class SensorReadingResource {
     }
 
     @GET
-    @Path("{rid}")
+    @Path("/{rid}")
     @Produces(MediaType.APPLICATION_JSON)
     public SensorReadingModel getReading(@PathParam("rid") String rid) {
         SensorReadingModel reading = readingDAO.getById(rid);
@@ -54,5 +55,30 @@ public class SensorReadingResource {
         }
 
         return reading;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addReading(@Context UriInfo uriInfo,
+            SensorReadingModel reading) {
+        SensorModel sensor = sensorDAO.getById(sensorId);
+        
+        if (sensor == null) {
+            return Response.status(404).entity("Sensor with id " + sensorId + " not found.").build();
+        }
+        
+        reading.setSensorId(sensorId);
+        
+        readingDAO.add(reading);
+        
+        sensor.setValue(reading.getValue());
+        sensorDAO.update(sensor);
+        
+        URI newSensorReadingUri = uriInfo.getAbsolutePathBuilder()
+                .path(reading.getId())
+                .build();
+        
+        return Response.created(newSensorReadingUri).entity(reading).build();
     }
 }

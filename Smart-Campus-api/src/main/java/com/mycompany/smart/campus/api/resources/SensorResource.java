@@ -15,7 +15,6 @@ import java.net.URI;
 import javax.ws.rs.core.Context;
 import java.util.List;
 import java.util.ArrayList;
-import com.mycompany.smart.campus.api.models.SensorReadingModel;
 
 /**
  *
