@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import com.mycompany.smart.campus.api.dao.*;
+import com.mycompany.smart.campus.api.exceptions.RoomNotEmptyException;
 import com.mycompany.smart.campus.api.models.RoomModel;
 import java.net.URI;
 import javax.ws.rs.core.Response;
@@ -59,6 +60,12 @@ public class RoomResource {
     @DELETE
     @Path("/{roomId}")
     public String deleteRoom(@PathParam("roomId") String id) {
+        RoomModel room = roomDAO.getById(id);
+        
+        if (!room.getSensors().isEmpty()) {
+            throw new RoomNotEmptyException("Unable to delete room.");
+        }
+        
         roomDAO.delete(id);
 
         return "Room with id = " + id + " has been deleted.";
