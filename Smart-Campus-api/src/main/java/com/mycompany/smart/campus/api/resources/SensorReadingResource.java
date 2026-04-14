@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import com.mycompany.smart.campus.api.dao.*;
 import com.mycompany.smart.campus.api.models.SensorReadingModel;
 import com.mycompany.smart.campus.api.models.SensorModel;
+import com.mycompany.smart.campus.api.exceptions.SensorUnavailableException;
 import java.util.List;
 import java.util.ArrayList;
 import javax.ws.rs.core.MediaType;
@@ -63,22 +64,24 @@ public class SensorReadingResource {
     public Response addReading(@Context UriInfo uriInfo,
             SensorReadingModel reading) {
         SensorModel sensor = sensorDAO.getById(sensorId);
-        
+
         if (sensor == null) {
             return Response.status(404).entity("Sensor with id " + sensorId + " not found.").build();
+        } else if (sensor.getStatus().equals("MAINTENANCE")) {
+            throw new SensorUnavailableException("Sensor with id " + sensorId + " is currently undergoing maintenance.");
         }
-        
+
         reading.setSensorId(sensorId);
-        
+
         readingDAO.add(reading);
-        
+
         sensor.setValue(reading.getValue());
         sensorDAO.update(sensor);
-        
+
         URI newSensorReadingUri = uriInfo.getAbsolutePathBuilder()
                 .path(reading.getId())
                 .build();
-        
+
         return Response.created(newSensorReadingUri).entity(reading).build();
     }
 }
