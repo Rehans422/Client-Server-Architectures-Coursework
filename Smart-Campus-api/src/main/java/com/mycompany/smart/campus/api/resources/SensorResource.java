@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import com.mycompany.smart.campus.api.dao.*;
 import com.mycompany.smart.campus.api.models.SensorModel;
 import com.mycompany.smart.campus.api.models.RoomModel;
+import com.mycompany.smart.campus.api.exceptions.LinkedResourceNotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
@@ -58,7 +59,7 @@ public class SensorResource {
         RoomModel room = roomDAO.getById(sensor.getRoom());
 
         if (room == null) {
-            return Response.status(404).entity("Room id does not exist.").build();
+            throw new LinkedResourceNotFoundException("Room with id " + sensor.getRoom() + " dose not exist.");
         }
 
         sensorDAO.add(sensor);
