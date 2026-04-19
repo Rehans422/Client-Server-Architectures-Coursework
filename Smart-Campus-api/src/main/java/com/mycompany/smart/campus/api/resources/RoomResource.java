@@ -61,11 +61,15 @@ public class RoomResource {
     @Path("/{roomId}")
     public String deleteRoom(@PathParam("roomId") String id) {
         RoomModel room = roomDAO.getById(id);
-        
+
+        if (room == null) {
+            throw new NotFoundException("Room with id = " + id + " could not be found.");
+        }
+
         if (!room.getSensors().isEmpty()) {
             throw new RoomNotEmptyException("Unable to delete room.");
         }
-        
+
         roomDAO.delete(id);
 
         return "Room with id = " + id + " has been deleted.";
