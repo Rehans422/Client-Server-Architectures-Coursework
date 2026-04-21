@@ -1,4 +1,29 @@
-# Client-Server-Architectures-Coursework
+# Client-Server Architectures Coursework
+
+## API Design Overview
+
+This API is designed to manage a "Smart Campus" system, providing access to rooms, sensors and sensor readings by adhering to RESTful principles.
+
+### Endpoints
+
+The API is organised around three main resources:
+
+`/rooms` - for managing rooms <br>
+`/sensors` - for managing sensors <br>
+`/sensors/{id}/readings` - for managing sensor readings from a specific sensor
+
+### Features
+
+- Supports `GET`, `POST` and `DELETE` operations
+- Validates logic before carrying out requests (e.g. sensors must belong to a room)
+- Utilises HTTP status codes with structured responses
+
+### Running The Project
+
+1. Download and open the project in your IDE
+2. Ensure the server (e.g. Apache Tomcat) is running
+3. Build and run the project
+4. Open your browser and go to [http://localhost:8080/Smart-Campus-api/api/v1/](http://localhost:8080/Smart-Campus-api/api/v1/) or Postman to access the API
 
 ## Part 1
 
@@ -49,3 +74,5 @@ Exposing stack traces leaks information about the application, often software an
 Question 3:
 
 Manually inserting Logger.info() inside each resource method would lead to decreased readability of the code while also making logging format changes incredibly time consuming. Using a filter would instead allow for changes to be applied quickly and easily while also preserving the readability of the resource class’ code.
+
+
