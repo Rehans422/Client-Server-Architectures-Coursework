@@ -25,7 +25,9 @@ The API is organised around three main resources:
 3. Build and run the project
 4. Open your browser and go to [http://localhost:8080/Smart-Campus-api/api/v1/](http://localhost:8080/Smart-Campus-api/api/v1/) or Postman to access the API
 
-## Part 1
+## Report
+
+### Part 1
 
 Question 1:
 
@@ -35,7 +37,7 @@ Question 2:
 
 Using Hypermedia allows the API to become essentially self-guiding, hardcoded URLs are no longer needed and there aren’t any errors if a developer alters the path, the client application does not break and the server provides the new URL to the user instead. It also removes the need for the user to know each endpoint in advance by using Hypermedia to navigate to the page they want. Hypermedia also allows business logic to be server-side instead of client-side, preventing options from being accessible if they are not available, stopping users from carrying out invalid operations.
 
-## Part 2
+### Part 2
 
 Question 1:
 
@@ -45,7 +47,7 @@ Question 2:
 
 Yes, the DELETE operation is idempotent. After the client sends the first request for deletion of that room it is either deleted or the client is told that it cannot be deleted as it currently has sensors assigned to it, if this is the case then this will be the result for all subsequent DELETE requests until the sensors are removed. For the prior outcome, the room is deleted successfully and any further requests then prompt a NotFoundException to be thrown, stating the id of the room that cannot be found.
 
-## Part 3
+### Part 3
 
 Question 1:
 
@@ -55,13 +57,13 @@ Question 2:
 
 Using query parameters is considered superior as path parameters force a hierarchical structure on the URL which becomes more difficult to manage with an increasing number of filters. Query parameters allow for inherently optional and unordered filters, allowing for the same path to be used on a single method with filters that only apply when the user makes use of them.
 
-## Part 4
+### Part 4
 
 Question 1:
 
 Using a Sub-Resource Locator pattern to delegate logic to other classes prevents a single class from having too many nested paths, improving readability and debugging. It also allows for reusability of code, utilising the SensorReadingResource class in another resource class in the future.
 
-## Part 5
+### Part 5
 
 Question 1:
 
