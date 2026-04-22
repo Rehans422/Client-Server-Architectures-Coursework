@@ -21,6 +21,7 @@ public class SensorModel implements BaseModel {
         this.id = id;
         this.type = type;
         this.roomId = roomId;
+        this.status = "ACTIVE";
     }
 
     // Getters
