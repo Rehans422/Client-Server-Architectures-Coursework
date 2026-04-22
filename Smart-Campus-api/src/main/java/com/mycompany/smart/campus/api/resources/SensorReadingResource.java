@@ -75,7 +75,7 @@ public class SensorReadingResource {
 
         readingDAO.add(reading);
 
-        sensor.setValue(reading.getValue());
+        sensor.setCurrentValue(reading.getValue());
         sensorDAO.update(sensor);
 
         URI newSensorReadingUri = uriInfo.getAbsolutePathBuilder()
