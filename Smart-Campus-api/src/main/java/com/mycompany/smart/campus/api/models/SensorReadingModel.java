@@ -23,6 +23,9 @@ public class SensorReadingModel implements BaseModel {
         this.value = value;
     }
 
+    public SensorReadingModel(){
+    }
+
     // Getters
     @Override
     public String getId() {

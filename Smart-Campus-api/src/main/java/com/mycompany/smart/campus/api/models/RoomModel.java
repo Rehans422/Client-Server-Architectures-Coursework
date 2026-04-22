@@ -25,6 +25,9 @@ public class RoomModel implements BaseModel {
         this.capacity = capacity;
     }
 
+    public RoomModel(){
+    }
+
     // Getters
     @Override
     public String getId() {

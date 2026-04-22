@@ -24,6 +24,9 @@ public class SensorModel implements BaseModel {
         this.status = "ACTIVE";
     }
 
+    public SensorModel(){
+    }
+
     // Getters
     @Override
     public String getId() {
