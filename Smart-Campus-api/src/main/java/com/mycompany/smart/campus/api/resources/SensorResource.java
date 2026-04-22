@@ -63,6 +63,9 @@ public class SensorResource {
         }
 
         sensorDAO.add(sensor);
+        List<String> roomSensors = room.getSensorIds();
+        roomSensors.add(sensor.getId());
+        room.setSensorIds(roomSensors);
 
         URI newSensorUri = uriInfo.getAbsolutePathBuilder()
                 .path(sensor.getId())
