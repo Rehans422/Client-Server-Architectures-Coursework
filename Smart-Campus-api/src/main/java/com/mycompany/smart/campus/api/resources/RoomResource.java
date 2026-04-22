@@ -66,7 +66,7 @@ public class RoomResource {
             throw new NotFoundException("Room with id = " + id + " could not be found.");
         }
 
-        if (!room.getSensors().isEmpty()) {
+        if (!room.getSensorIds().isEmpty()) {
             throw new RoomNotEmptyException("Unable to delete room.");
         }
 

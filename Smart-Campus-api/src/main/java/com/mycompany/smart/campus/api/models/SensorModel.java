@@ -37,11 +37,11 @@ public class SensorModel implements BaseModel {
         return status;
     }
 
-    public double getValue() {
+    public double getCurrentValue() {
         return currentValue;
     }
 
-    public String getRoom() {
+    public String getRoomId() {
         return roomId;
     }
 
@@ -59,11 +59,11 @@ public class SensorModel implements BaseModel {
         this.status = status;
     }
 
-    public void setValue(double value) {
+    public void setCurrentValue(double value) {
         this.currentValue = value;
     }
 
-    public void setRoom(String roomId) {
+    public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
 }

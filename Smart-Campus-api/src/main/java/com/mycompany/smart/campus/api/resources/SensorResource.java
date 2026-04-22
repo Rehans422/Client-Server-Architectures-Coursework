@@ -56,10 +56,10 @@ public class SensorResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addSensor(@Context UriInfo uriInfo,
             SensorModel sensor) {
-        RoomModel room = roomDAO.getById(sensor.getRoom());
+        RoomModel room = roomDAO.getById(sensor.getRoomId());
 
         if (room == null) {
-            throw new LinkedResourceNotFoundException("Room with id " + sensor.getRoom() + " dose not exist.");
+            throw new LinkedResourceNotFoundException("Room with id " + sensor.getRoomId() + " dose not exist.");
         }
 
         sensorDAO.add(sensor);

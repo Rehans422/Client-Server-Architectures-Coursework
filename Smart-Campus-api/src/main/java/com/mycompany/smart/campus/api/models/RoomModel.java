@@ -39,7 +39,7 @@ public class RoomModel implements BaseModel {
         return capacity;
     }
 
-    public List<String> getSensors() {
+    public List<String> getSensorIds() {
         return sensorIds;
     }
 
@@ -57,7 +57,7 @@ public class RoomModel implements BaseModel {
         this.capacity = capacity;
     }
 
-    public void setSensors(List<String> sensors) {
+    public void setSensorIds(List<String> sensors) {
         this.sensorIds = sensors;
     }
 }
