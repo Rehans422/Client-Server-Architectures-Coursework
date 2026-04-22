@@ -25,6 +25,26 @@ The API is organised around three main resources:
 3. Build and run the project
 4. Open your browser and go to [http://localhost:8080/Smart-Campus-api/api/v1/](http://localhost:8080/Smart-Campus-api/api/v1/) or Postman to access the API
 
+### Sample CURL commands
+```
+- - Get All Rooms - -
+curl -X GET http://localhost:8080/Smart-Campus-api/api/v1/rooms
+
+- - Get Room By ID - -
+curl -X GET http://localhost:8080/Smart-Campus-api/api/v1/rooms/1
+
+- - Create a New Room - -
+curl -X POST http://localhost:8080/Smart-Campus-api/api/v1/rooms \
+-H "Content-Type: application/json" \
+-d '{"id": "1", "name": "Lab A", "capacity": 30, "sensorIds": []}'
+
+- - Delete a Room - -
+curl -X DELETE http://localhost:8080/Smart-Campus-api/api/v1/rooms/1
+
+- - Filter Sensors By Type - -
+curl -X GET "http://localhost:8080/Smart-Campus-api/api/v1/sensors?type=temperature"
+```
+
 ## Report
 
 ### Part 1
