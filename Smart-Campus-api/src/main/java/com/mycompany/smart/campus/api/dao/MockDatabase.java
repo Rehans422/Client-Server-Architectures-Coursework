@@ -26,6 +26,18 @@ public class MockDatabase {
         // Initialising Sensors
         SENSORS.add(new SensorModel("1", "Temperature", "1"));
         SENSORS.add(new SensorModel("2", "CO2", "2"));
+        
+        for (SensorModel SENSOR : SENSORS) {
+            String roomId = SENSOR.getRoomId();
+            
+            for (RoomModel ROOM : ROOMS) {
+                if (ROOM.getId().equals(roomId)) {
+                    List<String> roomSensors = ROOM.getSensorIds();
+                    roomSensors.add(SENSOR.getId());
+                    ROOM.setSensorIds(roomSensors);
+                }
+            }
+        }
 
         // Initialising Sensor Readings
         READINGS.add(new SensorReadingModel("1", "1", 3000, 8));
